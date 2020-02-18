@@ -21,6 +21,10 @@ https://www.youtube.com/watch?time_continue=1&v=mjHR4qkXRSc
 ## Splash Screen
 mipmap-xxxhdpi in the Android folder when using App Icon tends to work best for both platforms.
 
+## Grant access over entire project, (to avoid the EACCES errors.)
+sudo chown -R <username> <directory>
+sudo chown -R treyhope myapi
+
 # How to Add Local Project to Bit Bucket
 Git clone an existing repository.
 git init

@@ -1,8 +1,54 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const Algolia = require('./algolia_functions');
+const StripeCard = require('./stripe/card_functions');
+const StripeToken = require('./stripe/token_functions');
+const StripeCustomer = require('./stripe/customer_functions');
+const StripeCoupon = require('./stripe/coupon_functions');
+const StripeCharge = require('./stripe/charge_functions');
+const StripeSubscription = require('./stripe/subscription_functions');
+const StripeOrder = require('./stripe/order_functions');
+const StripeProduct = require('./stripe/product_functions');
+const StripeSku = require('./stripe/sku_functions');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+admin.initializeApp(functions.config().firebase);
+
+//Algolia
+exports.AlgoliaSyncHiddenGemsGemsIndex = Algolia.syncHiddenGemsGemsIndex;
+exports.AlgoliaSyncHiddenGemsUsersIndex = Algolia.syncHiddenGemsUsersIndex;
+
+//Cards
+exports.StripeCreateCard = StripeCard.create;
+exports.StripeDeleteCard = StripeCard.delete;
+
+//Charges
+exports.StripeCreateCharge = StripeCharge.create;
+exports.StripeListAllCharges = StripeCharge.listAll;
+exports.StripeRetrieveCharge = StripeCharge.retrieve;
+
+//Customers
+exports.StripeCreateCustomer = StripeCustomer.create;
+exports.StripeUpdateCustomer = StripeCustomer.update;
+exports.StripeRetrieveCustomer = StripeCustomer.retrieve;
+exports.StripeDeleteCustomer = StripeCustomer.delete;
+
+//Coupons
+exports.StripeRetrieveCoupon = StripeCoupon.retrieve;
+
+//Orders
+exports.StripeCreateOrder = StripeOrder.create;
+exports.StripeListOrders = StripeOrder.list;
+exports.StripeUpdateOrder = StripeOrder.update;
+exports.StripePayOrder = StripeOrder.pay;
+
+//Products
+exports.StripeCreateProduct = StripeProduct.create;
+
+//Skus
+exports.StripeRetrieveSku = StripeSku.retrieve;
+
+//Subscriptions
+exports.StripeCreateSubscription = StripeSubscription.create;
+
+//Tokens
+exports.StripeCreateToken = StripeToken.create;
