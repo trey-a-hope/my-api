@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const Email = require('./email_functions');
 const Algolia = require('./algolia_functions');
 const StripeCard = require('./stripe/card_functions');
 const StripeToken = require('./stripe/token_functions');
@@ -17,38 +18,41 @@ admin.initializeApp(functions.config().firebase);
 exports.AlgoliaSyncHiddenGemsGemsIndex = Algolia.syncHiddenGemsGemsIndex;
 exports.AlgoliaSyncHiddenGemsUsersIndex = Algolia.syncHiddenGemsUsersIndex;
 
-//Cards
+//Email
+exports.SendEmail = Email.sendEmail;
+
+//Stripe Cards
 exports.StripeCreateCard = StripeCard.create;
 exports.StripeDeleteCard = StripeCard.delete;
 
-//Charges
+//Stripe Charges
 exports.StripeCreateCharge = StripeCharge.create;
 exports.StripeListAllCharges = StripeCharge.listAll;
 exports.StripeRetrieveCharge = StripeCharge.retrieve;
 
-//Customers
+//Stripe Customers
 exports.StripeCreateCustomer = StripeCustomer.create;
 exports.StripeUpdateCustomer = StripeCustomer.update;
 exports.StripeRetrieveCustomer = StripeCustomer.retrieve;
 exports.StripeDeleteCustomer = StripeCustomer.delete;
 
-//Coupons
+//Stripe Coupons
 exports.StripeRetrieveCoupon = StripeCoupon.retrieve;
 
-//Orders
+//Stripe Orders
 exports.StripeCreateOrder = StripeOrder.create;
 exports.StripeListOrders = StripeOrder.list;
 exports.StripeUpdateOrder = StripeOrder.update;
 exports.StripePayOrder = StripeOrder.pay;
 
-//Products
+//Stripe Products
 exports.StripeCreateProduct = StripeProduct.create;
 
-//Skus
+//Stripe Skus
 exports.StripeRetrieveSku = StripeSku.retrieve;
 
-//Subscriptions
+//Stripe Subscriptions
 exports.StripeCreateSubscription = StripeSubscription.create;
 
-//Tokens
+//Stripe Tokens
 exports.StripeCreateToken = StripeToken.create;
